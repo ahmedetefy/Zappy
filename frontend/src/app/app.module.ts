@@ -8,11 +8,13 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { TweetListComponent } from './components/tweet-list/tweet-list.component';
 import { LogoutComponent } from './components/logout/logout.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 import { AuthService } from './services/auth.service';
 import { EnsureAuthenticated } from './services/ensure-authenticated.service';
 import { LoginRedirect } from './services/login-redirect.service';
-import { NotFoundComponent } from './components/not-found/not-found.component';
+import { TweetService } from './services/tweet.service';
+
 
 
 
@@ -33,7 +35,8 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
   providers: [
     AuthService,
     EnsureAuthenticated,
-    LoginRedirect
+    LoginRedirect,
+    TweetService
   ],
   bootstrap: [AppComponent]
 })

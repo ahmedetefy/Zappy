@@ -1,4 +1,8 @@
-<p>
-  tweet-list works!
-</p>
+<h1>Tweet List </h1>
+<ul *ngFor="let item of tweetList">
+	<li>
+		<p> {{item.text}} </p>
+		<p> {{item.created_at}} </p>
+	</li>
+</ul>
 <button routerLink="/logout" class="btn logout-button" > Logout </button>

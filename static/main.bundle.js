@@ -75,16 +75,18 @@ var AppComponent = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_login_login_component__ = __webpack_require__("./src/app/components/login/login.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_tweet_list_tweet_list_component__ = __webpack_require__("./src/app/components/tweet-list/tweet-list.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_logout_logout_component__ = __webpack_require__("./src/app/components/logout/logout.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_auth_service__ = __webpack_require__("./src/app/services/auth.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_ensure_authenticated_service__ = __webpack_require__("./src/app/services/ensure-authenticated.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_login_redirect_service__ = __webpack_require__("./src/app/services/login-redirect.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_not_found_not_found_component__ = __webpack_require__("./src/app/components/not-found/not-found.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_not_found_not_found_component__ = __webpack_require__("./src/app/components/not-found/not-found.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_auth_service__ = __webpack_require__("./src/app/services/auth.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_ensure_authenticated_service__ = __webpack_require__("./src/app/services/ensure-authenticated.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__services_login_redirect_service__ = __webpack_require__("./src/app/services/login-redirect.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__services_tweet_service__ = __webpack_require__("./src/app/services/tweet.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -108,7 +110,7 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_6__components_login_login_component__["a" /* LoginComponent */],
                 __WEBPACK_IMPORTED_MODULE_7__components_tweet_list_tweet_list_component__["a" /* TweetListComponent */],
                 __WEBPACK_IMPORTED_MODULE_8__components_logout_logout_component__["a" /* LogoutComponent */],
-                __WEBPACK_IMPORTED_MODULE_12__components_not_found_not_found_component__["a" /* NotFoundComponent */]
+                __WEBPACK_IMPORTED_MODULE_9__components_not_found_not_found_component__["a" /* NotFoundComponent */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_4__app_routing__["a" /* AppRoutingModule */],
@@ -117,9 +119,10 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormsModule */]
             ],
             providers: [
-                __WEBPACK_IMPORTED_MODULE_9__services_auth_service__["a" /* AuthService */],
-                __WEBPACK_IMPORTED_MODULE_10__services_ensure_authenticated_service__["a" /* EnsureAuthenticated */],
-                __WEBPACK_IMPORTED_MODULE_11__services_login_redirect_service__["a" /* LoginRedirect */]
+                __WEBPACK_IMPORTED_MODULE_10__services_auth_service__["a" /* AuthService */],
+                __WEBPACK_IMPORTED_MODULE_11__services_ensure_authenticated_service__["a" /* EnsureAuthenticated */],
+                __WEBPACK_IMPORTED_MODULE_12__services_login_redirect_service__["a" /* LoginRedirect */],
+                __WEBPACK_IMPORTED_MODULE_13__services_tweet_service__["a" /* TweetService */]
             ],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* AppComponent */]]
         })
@@ -399,7 +402,7 @@ module.exports = ""
 /***/ "./src/app/components/tweet-list/tweet-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  tweet-list works!\n</p>\n<button routerLink=\"/logout\" class=\"btn logout-button\" > Logout </button>\n"
+module.exports = "<h1>Tweet List </h1>\n<ul *ngFor=\"let item of tweetList\">\n\t<li>\n\t\t<p> {{item.text}} </p>\n\t\t<p> {{item.created_at}} </p>\n\t</li>\n</ul>\n<button routerLink=\"/logout\" class=\"btn logout-button\" > Logout </button>\n"
 
 /***/ }),
 
@@ -409,6 +412,7 @@ module.exports = "<p>\n  tweet-list works!\n</p>\n<button routerLink=\"/logout\"
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TweetListComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_tweet_service__ = __webpack_require__("./src/app/services/tweet.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -419,10 +423,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var TweetListComponent = /** @class */ (function () {
-    function TweetListComponent() {
+    function TweetListComponent(tweet) {
+        this.tweet = tweet;
     }
     TweetListComponent.prototype.ngOnInit = function () {
+        this.getTweetList();
+    };
+    TweetListComponent.prototype.getTweetList = function () {
+        var _this = this;
+        var token = localStorage.getItem('token');
+        if (token) {
+            this.tweet.getTweetList(token)
+                .then(function (tickets) {
+                _this.tweetList = tickets.json();
+            })
+                .catch(function (err) {
+                console.log(err);
+            });
+        }
     };
     TweetListComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
@@ -430,7 +450,7 @@ var TweetListComponent = /** @class */ (function () {
             template: __webpack_require__("./src/app/components/tweet-list/tweet-list.component.html"),
             styles: [__webpack_require__("./src/app/components/tweet-list/tweet-list.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__services_tweet_service__["a" /* TweetService */]])
     ], TweetListComponent);
     return TweetListComponent;
 }());
@@ -588,6 +608,52 @@ var LoginRedirect = /** @class */ (function () {
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__auth_service__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */]])
     ], LoginRedirect);
     return LoginRedirect;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/services/tweet.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TweetService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("./node_modules/@angular/http/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise__ = __webpack_require__("./node_modules/rxjs/_esm5/add/operator/toPromise.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var TweetService = /** @class */ (function () {
+    function TweetService(http) {
+        this.http = http;
+        this.BASE_URL = 'http://0.0.0.0:8000/api/feed';
+        this.headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({ 'Content-Type': 'application/json' });
+    }
+    TweetService.prototype.getTweetList = function (token) {
+        var url = this.BASE_URL + "/tweets/";
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({
+            'Content-Type': 'application/json',
+            Authorization: "JWT " + token
+        });
+        return this.http.get(url, { headers: headers }).toPromise();
+    };
+    TweetService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]])
+    ], TweetService);
+    return TweetService;
 }());
 
 
