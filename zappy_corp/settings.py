@@ -133,7 +133,7 @@ REST_FRAMEWORK = {
 AUTH_USER_MODEL = 'users.ZappyUser'
 
 JWT_AUTH = {
-    'JWT_EXPIRATION_DELTA': datetime.timedelta(minutes=15),
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(minutes=60),
     'JWT_GET_USER_SECRET_KEY': 'users.models.jwt_get_secret_key',
 }
 
