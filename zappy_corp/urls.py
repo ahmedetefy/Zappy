@@ -2,6 +2,7 @@ from django.conf.urls import url, include
 from django.contrib import admin
 
 api_urls = [
+    url(r'^feed/', include('feeds.urls', namespace='feed')),
     url(r'^jwt/', include('users.urls', namespace='jwt')),
 ]
 
