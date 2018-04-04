@@ -1,14 +1,19 @@
 import json
 
 from django.urls import reverse
-from zappy_corp import settings
+from slackPart import settings
 from rest_framework import status
 from rest_framework.test import APITestCase, APIClient
+from rest_framework_jwt.settings import api_settings
+from django.test import TestCase
 
 from pymongo import MongoClient
 from users.models import ZappyUser
 from .models import Tweet
 from .views import twitter_setup
+from .serializers import TweetSerializer
+
+import tweepy
 
 
 class DatabaseSetup(object):
@@ -21,7 +26,7 @@ class DatabaseSetup(object):
     def tearDown(self):
         client = MongoClient('mongodb://mongodb:27017/test_zappy-corpyy')
         client['test_zappy-corpyy'].users_zappyuser.remove({})
-        client['test_zappy-corpyy'].feeds_tweet.remove({})
+        client['test_zappy-corpyy'].quickstart_tweet.remove({})
 
 
 class GetTweetsViewAPITestCase(DatabaseSetup, APITestCase):
@@ -65,3 +70,35 @@ class GetTweetsViewAPITestCase(DatabaseSetup, APITestCase):
                          "Your twitter posts have been registered correctly.")
         count_after_tweets = Tweet.objects.all().count()
         self.assertEqual(count_before_tweets + 1, count_after_tweets)
+
+
+class TweetListAPITestCase(DatabaseSetup, APITestCase):
+    def setUp(self):
+        super(TweetListAPITestCase, self).setUp()
+        user_data = {
+            "username": "etefy",
+            "password": "123the123"
+        }
+        response = self.client.post(reverse('jwt:login'),
+                                    user_data)
+        self.token = json.loads(response.content)['token']
+        self.tweet = Tweet.objects.create(text="john#1",
+                                          id_str='1',
+                                          created_at='Mon')
+        Tweet.objects.create(text="adam#2", id_str='2', created_at='Wed')
+
+    def test_get_tweet_list_unauthenticated(self):
+        response = self.client.get(reverse('feed:tweet-list'))
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+        self.assertEqual(json.loads(response.content)['detail'],
+                         "Authentication credentials were not provided.")
+
+    def test_get_tweet_list_authenticated(self):
+        self.client.credentials(HTTP_AUTHORIZATION='JWT ' + self.token)
+        response = self.client.get(reverse('feed:tweet-list'))
+        self.assertTrue(len(
+            json.loads(response.content)) == Tweet.objects.count())
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    def test_model_Tweet_str_function(self):
+        self.assertEqual(self.tweet.text, str(self.tweet))
