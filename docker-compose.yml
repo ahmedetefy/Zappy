@@ -1,0 +1,25 @@
+version: '3'
+services:
+    web:
+        build: .
+        command: python3 manage.py runserver 0.0.0.0:8000
+        volumes:
+            - .:/code
+        ports:
+            - "8000:8000"
+        depends_on:
+            - mongodb
+
+    mongodb:
+        image: mongo:3.4.1
+        restart: unless-stopped
+        ports:
+            - "27017:27017"
+
+    localtunnel:
+        image: efrecon/localtunnel
+        restart: always
+        links:
+            - web
+        command:
+            --local-host web --port 8000 --subdomain zappycorp
