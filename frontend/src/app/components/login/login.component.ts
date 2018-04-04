@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
   	this.auth.login(this.user)
     .then((user) => {
       localStorage.setItem('token', user.json().token);
-      this.router.navigateByUrl('/tickets');
+      this.router.navigateByUrl('/tweet_list');
     })
     .catch((err) => {
       console.log(err);
