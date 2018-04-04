@@ -1,7 +1,7 @@
 import json
 
 from django.urls import reverse
-from slackPart import settings
+from zappy_corp import settings
 from rest_framework import status
 from rest_framework.test import APITestCase, APIClient
 
