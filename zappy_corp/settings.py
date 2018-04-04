@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'users.apps.UsersConfig'
+    'users.apps.UsersConfig',
+    'feeds.apps.FeedsConfig',
 ]
 
 MIDDLEWARE = [
@@ -137,3 +138,14 @@ JWT_AUTH = {
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Slack Token
+
+SLACK_TOKEN = 'AQFZNFV3gjUFdflBJ5VZGqqc'
+
+# Twitter Credentials
+
+CONSUMER_KEY = 'WvJS4tkh740F5W0BIEvO66d01'
+CONSUMER_SECRET = 'yE5tenSyxTetUHpRAd8YVmf413h52U9RKbHKhW7nt4dZ4VdUW9'
+ACCESS_TOKEN = '719842218475917312-XGA7siMCT5ZLWXwC25Do8bnj4Z8yAcZ'
+ACCESS_TOKEN_SECRET = '1Pnl2fkeIaMQaCKO4RCpFu52rDezc28p3Zw8MOn6NzGPx'
