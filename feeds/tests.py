@@ -1,19 +1,14 @@
 import json
 
 from django.urls import reverse
-from slackPart import settings
+from zappy_corp import settings
 from rest_framework import status
 from rest_framework.test import APITestCase, APIClient
-from rest_framework_jwt.settings import api_settings
-from django.test import TestCase
 
 from pymongo import MongoClient
 from users.models import ZappyUser
 from .models import Tweet
 from .views import twitter_setup
-from .serializers import TweetSerializer
-
-import tweepy
 
 
 class DatabaseSetup(object):
@@ -26,7 +21,7 @@ class DatabaseSetup(object):
     def tearDown(self):
         client = MongoClient('mongodb://mongodb:27017/test_zappy-corpyy')
         client['test_zappy-corpyy'].users_zappyuser.remove({})
-        client['test_zappy-corpyy'].quickstart_tweet.remove({})
+        client['test_zappy-corpyy'].feeds_tweet.remove({})
 
 
 class GetTweetsViewAPITestCase(DatabaseSetup, APITestCase):
