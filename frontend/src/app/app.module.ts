@@ -9,13 +9,15 @@ import { LoginComponent } from './components/login/login.component';
 
 import { AuthService } from './services/auth.service';
 import { TweetListComponent } from './components/tweet-list/tweet-list.component';
+import { LogoutComponent } from './components/logout/logout.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    TweetListComponent
+    TweetListComponent,
+    LogoutComponent
   ],
   imports: [
     AppRoutingModule,
