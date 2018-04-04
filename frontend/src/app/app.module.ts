@@ -7,12 +7,14 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 
 import { AuthService } from './services/auth.service';
+import { TweetListComponent } from './components/tweet-list/tweet-list.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    TweetListComponent
   ],
   imports: [
     AppRoutingModule,
