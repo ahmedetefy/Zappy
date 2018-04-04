@@ -6,10 +6,13 @@ import { HttpModule } from '@angular/http';
 import { AppRoutingModule } from './app.routing';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
-
-import { AuthService } from './services/auth.service';
 import { TweetListComponent } from './components/tweet-list/tweet-list.component';
 import { LogoutComponent } from './components/logout/logout.component';
+
+import { AuthService } from './services/auth.service';
+import { EnsureAuthenticated } from './services/ensure-authenticated.service';
+import { LoginRedirect } from './services/login-redirect.service';
+
 
 
 @NgModule({
@@ -26,7 +29,9 @@ import { LogoutComponent } from './components/logout/logout.component';
     FormsModule
   ],
   providers: [
-    AuthService
+    AuthService,
+    EnsureAuthenticated,
+    LoginRedirect
   ],
   bootstrap: [AppComponent]
 })
