@@ -12,6 +12,7 @@ import { LogoutComponent } from './components/logout/logout.component';
 import { AuthService } from './services/auth.service';
 import { EnsureAuthenticated } from './services/ensure-authenticated.service';
 import { LoginRedirect } from './services/login-redirect.service';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 
 
@@ -20,7 +21,8 @@ import { LoginRedirect } from './services/login-redirect.service';
     AppComponent,
     LoginComponent,
     TweetListComponent,
-    LogoutComponent
+    LogoutComponent,
+    NotFoundComponent
   ],
   imports: [
     AppRoutingModule,
