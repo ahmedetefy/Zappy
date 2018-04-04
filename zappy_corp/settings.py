@@ -21,7 +21,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '#oq3(3&aw$%*ygd97=het*ha7gm&h(xbs_d#*3ffgfa**5j476'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -150,11 +150,11 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Slack Token
 
-SLACK_TOKEN = 'AQFZNFV3gjUFdflBJ5VZGqqc'
+SLACK_TOKEN = os.environ.get('SLACK_TOKEN')
 
 # Twitter Credentials
 
-CONSUMER_KEY = 'WvJS4tkh740F5W0BIEvO66d01'
-CONSUMER_SECRET = 'yE5tenSyxTetUHpRAd8YVmf413h52U9RKbHKhW7nt4dZ4VdUW9'
-ACCESS_TOKEN = '719842218475917312-XGA7siMCT5ZLWXwC25Do8bnj4Z8yAcZ'
-ACCESS_TOKEN_SECRET = '1Pnl2fkeIaMQaCKO4RCpFu52rDezc28p3Zw8MOn6NzGPx'
+CONSUMER_KEY = os.environ.get('CONSUMER_KEY')
+CONSUMER_SECRET = os.environ.get('CONSUMER_SECRET')
+ACCESS_TOKEN = os.environ.get('ACCESS_TOKEN')
+ACCESS_TOKEN_SECRET = os.environ.get('ACCESS_TOKEN_SECRET')

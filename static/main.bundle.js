@@ -279,7 +279,7 @@ module.exports = ""
 /***/ "./src/app/components/logout/logout.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n\t<h3 class=\"theme-blue text-center section\"><b> Are you sure you want to logout? </b></h3>\n\t<div class=\"col-md-12 text-center theme-orange\">\n\t\t<button routerLink=\"/tickets\" class=\"btn logout-button\" > No </button>\n\t\t<button (click)='logMeOut()' class=\"btn logout-button\" > Yes </button>\n\t</div>\n</div>"
+module.exports = "<div class=\"container\">\n\t<h3 class=\"theme-blue text-center section\"><b> Are you sure you want to logout? </b></h3>\n\t<div class=\"col-md-12 text-center theme-orange\">\n\t\t<button routerLink=\"/tweet_list\" class=\"btn logout-button\" > No </button>\n\t\t<button (click)='logMeOut()' class=\"btn logout-button\" > Yes </button>\n\t</div>\n</div>"
 
 /***/ }),
 
