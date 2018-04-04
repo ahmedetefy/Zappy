@@ -72,3 +72,36 @@ class UserLoginAPITestCase(DatabaseSetup, APITestCase):
                          "This field is required.")
         self.assertEqual(json.loads(response.content)['password'][0],
                          "This field is required.")
+
+
+class UserLogoutAPITestCase(DatabaseSetup, APITestCase):
+    def setUp(self):
+        super(UserLogoutAPITestCase, self).setUp()
+        self.get_token()
+
+    def get_token(self):
+        user_data = {
+            "username": "etefy",
+            "password": "123the123"
+        }
+        response = self.client.post(reverse('jwt:login'),
+                                    user_data)
+        self.token = json.loads(response.content)['token']
+
+    def test_logout_without_token(self):
+        response = self.client.post(reverse("jwt:logout"))
+        self.assertEqual(status.HTTP_401_UNAUTHORIZED,
+                         response.status_code)
+        self.assertEqual(json.loads(response.content)['detail'],
+                         "Authentication credentials were not provided.")
+
+    def test_logout_with_valid_token(self):
+        self.client.credentials(HTTP_AUTHORIZATION='JWT ' + self.token)
+        response = self.client.post(reverse("jwt:logout"))
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+        self.client.credentials(HTTP_AUTHORIZATION='JWT ' + self.token)
+        response = self.client.post(reverse("jwt:logout"))
+        self.assertEqual(status.HTTP_401_UNAUTHORIZED,
+                         response.status_code)
+        self.assertEqual(json.loads(response.content)['detail'],
+                         "Error decoding signature.")
