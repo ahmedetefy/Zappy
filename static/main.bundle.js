@@ -78,12 +78,14 @@ var AppComponent = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_auth_service__ = __webpack_require__("./src/app/services/auth.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_ensure_authenticated_service__ = __webpack_require__("./src/app/services/ensure-authenticated.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_login_redirect_service__ = __webpack_require__("./src/app/services/login-redirect.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_not_found_not_found_component__ = __webpack_require__("./src/app/components/not-found/not-found.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -105,7 +107,8 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* AppComponent */],
                 __WEBPACK_IMPORTED_MODULE_6__components_login_login_component__["a" /* LoginComponent */],
                 __WEBPACK_IMPORTED_MODULE_7__components_tweet_list_tweet_list_component__["a" /* TweetListComponent */],
-                __WEBPACK_IMPORTED_MODULE_8__components_logout_logout_component__["a" /* LogoutComponent */]
+                __WEBPACK_IMPORTED_MODULE_8__components_logout_logout_component__["a" /* LogoutComponent */],
+                __WEBPACK_IMPORTED_MODULE_12__components_not_found_not_found_component__["a" /* NotFoundComponent */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_4__app_routing__["a" /* AppRoutingModule */],
@@ -138,8 +141,9 @@ var AppModule = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_login_login_component__ = __webpack_require__("./src/app/components/login/login.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_logout_logout_component__ = __webpack_require__("./src/app/components/logout/logout.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_tweet_list_tweet_list_component__ = __webpack_require__("./src/app/components/tweet-list/tweet-list.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_ensure_authenticated_service__ = __webpack_require__("./src/app/services/ensure-authenticated.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_login_redirect_service__ = __webpack_require__("./src/app/services/login-redirect.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_not_found_not_found_component__ = __webpack_require__("./src/app/components/not-found/not-found.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_ensure_authenticated_service__ = __webpack_require__("./src/app/services/ensure-authenticated.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_login_redirect_service__ = __webpack_require__("./src/app/services/login-redirect.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -153,21 +157,26 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
 var appRoutes = [
     {
         path: "",
         component: __WEBPACK_IMPORTED_MODULE_2__components_login_login_component__["a" /* LoginComponent */],
-        canActivate: [__WEBPACK_IMPORTED_MODULE_6__services_login_redirect_service__["a" /* LoginRedirect */]]
+        canActivate: [__WEBPACK_IMPORTED_MODULE_7__services_login_redirect_service__["a" /* LoginRedirect */]]
     },
     {
         path: "tweet_list",
         component: __WEBPACK_IMPORTED_MODULE_4__components_tweet_list_tweet_list_component__["a" /* TweetListComponent */],
-        canActivate: [__WEBPACK_IMPORTED_MODULE_5__services_ensure_authenticated_service__["a" /* EnsureAuthenticated */]]
+        canActivate: [__WEBPACK_IMPORTED_MODULE_6__services_ensure_authenticated_service__["a" /* EnsureAuthenticated */]]
     },
     {
         path: "logout",
         component: __WEBPACK_IMPORTED_MODULE_3__components_logout_logout_component__["a" /* LogoutComponent */],
-        canActivate: [__WEBPACK_IMPORTED_MODULE_5__services_ensure_authenticated_service__["a" /* EnsureAuthenticated */]]
+        canActivate: [__WEBPACK_IMPORTED_MODULE_6__services_ensure_authenticated_service__["a" /* EnsureAuthenticated */]]
+    },
+    {
+        path: "**",
+        component: __WEBPACK_IMPORTED_MODULE_5__components_not_found_not_found_component__["a" /* NotFoundComponent */],
     }
 ];
 var AppRoutingModule = /** @class */ (function () {
@@ -324,6 +333,56 @@ var LogoutComponent = /** @class */ (function () {
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__services_auth_service__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */]])
     ], LogoutComponent);
     return LogoutComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/components/not-found/not-found.component.css":
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/components/not-found/not-found.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class='text-center'>\n    <h1>404 - Page Not Found</h1>\n</div>"
+
+/***/ }),
+
+/***/ "./src/app/components/not-found/not-found.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NotFoundComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var NotFoundComponent = /** @class */ (function () {
+    function NotFoundComponent() {
+    }
+    NotFoundComponent.prototype.ngOnInit = function () {
+    };
+    NotFoundComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'app-not-found',
+            template: __webpack_require__("./src/app/components/not-found/not-found.component.html"),
+            styles: [__webpack_require__("./src/app/components/not-found/not-found.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], NotFoundComponent);
+    return NotFoundComponent;
 }());
 
 

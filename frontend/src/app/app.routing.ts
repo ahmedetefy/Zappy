@@ -4,6 +4,7 @@ import {RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { TweetListComponent } from './components/tweet-list/tweet-list.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 import { EnsureAuthenticated } from './services/ensure-authenticated.service';
 import { LoginRedirect } from './services/login-redirect.service';
@@ -23,6 +24,10 @@ const appRoutes: Routes = [
         path:"logout",
         component: LogoutComponent,
         canActivate: [EnsureAuthenticated]
+    },
+    {
+        path:"**",
+        component: NotFoundComponent,
     }
 
 ]
