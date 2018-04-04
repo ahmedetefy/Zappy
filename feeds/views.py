@@ -1,13 +1,22 @@
 from rest_framework.response import Response
+from rest_framework import generics
 from rest_framework import status as status_http
 from rest_framework.views import APIView
+from rest_framework.permissions import IsAuthenticated
 
 from zappy_corp import settings
 
 from .models import Tweet
+from .serializers import TweetSerializer
 from .permissions import SlackTokenPermission, GoMessagePermission
 
 import tweepy
+
+
+class TweetList(generics.ListAPIView):
+    queryset = Tweet.objects.all()
+    serializer_class = TweetSerializer
+    permission_classes = (IsAuthenticated, )
 
 
 class GetTweetsView(APIView):
