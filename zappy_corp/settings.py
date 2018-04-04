@@ -25,7 +25,7 @@ SECRET_KEY = '#oq3(3&aw$%*ygd97=het*ha7gm&h(xbs_d#*3ffgfa**5j476'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -75,8 +76,10 @@ WSGI_APPLICATION = 'zappy_corp.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'djongo',
+        'NAME': 'zappy-corpyy',
+        'HOST': 'mongodb',
+        'port': '27017'
     }
 }
 
