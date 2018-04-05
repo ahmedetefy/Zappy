@@ -30,7 +30,7 @@ First of all, make sure you have [Docker-compose](https://docs.docker.com/compos
 Next, please follow the following instructions:  
 ```
 (1) $ sudo docker-compose build  
-(2) $ sudo docker-compose run web python3 manage.py makemigrations
+(2) $ sudo docker-compose run web python3 manage.py makemigrations users feeds  
 (3) $ sudo docker-compose run web python3 manage.py migrate
 (4) Optional to run tests  
 $ sudo docker-compose run web python3 manage.py test  
