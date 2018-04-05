@@ -5,6 +5,9 @@ from djongo import models
 
 
 class Tweet(models.Model):
+    """
+    Tweet Model for storing Twitter Tweet related details
+    """
     text = models.CharField(max_length=200)
     id_str = models.CharField(max_length=200, primary_key=True)
     created_at = models.CharField(max_length=200)

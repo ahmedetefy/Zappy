@@ -12,6 +12,9 @@ from .views import twitter_setup
 
 
 class DatabaseSetup(object):
+    """
+    Creation of Database Setup and default objects.
+    """
     def setUp(self):
         self.user = ZappyUser.objects.create(username="etefy")
         self.user.set_password('123the123')
@@ -19,6 +22,11 @@ class DatabaseSetup(object):
         self.client = APIClient()
 
     def tearDown(self):
+        """
+        Function that resets models.ZappyUser and
+        models.Tweet in the database ensuring the data does
+        not persist between tests.
+        """
         client = MongoClient('mongodb://mongodb:27017/test_zappy-corpyy')
         client['test_zappy-corpyy'].users_zappyuser.remove({})
         client['test_zappy-corpyy'].feeds_tweet.remove({})
@@ -30,6 +38,9 @@ class GetTweetsViewAPITestCase(DatabaseSetup, APITestCase):
         self.SLACK_TOKEN = settings.SLACK_TOKEN
 
     def test_without_slack_token_permission_class(self):
+        """
+        Test that tests permissions.SlackTokenPermission
+        """
         message_data = {'text': 'John Doe'}
         response = self.client.post(reverse('feed:slack'), message_data)
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
@@ -37,6 +48,9 @@ class GetTweetsViewAPITestCase(DatabaseSetup, APITestCase):
                          "Slack authentication credentials were not provided.")
 
     def test_with_slack_token_and_no_go_message_permission_class(self):
+        """
+        Test that tests permissions.GoMessagePermission
+        """
         message_data = {'text': 'John Doe',
                         'token': self.SLACK_TOKEN + ''}
         response = self.client.post(reverse('feed:slack'), message_data)
@@ -45,6 +59,11 @@ class GetTweetsViewAPITestCase(DatabaseSetup, APITestCase):
                          "The slack message does not contain the word GO.")
 
     def test_with_slack_token_and_go_message_permission_class(self):
+        """
+        Test that tests retrieval of Twitter Account Posts and storing
+        them in the database in case Slack Token is valid and a message
+        contains the word "Go".
+        """
         message_data = {'text': 'John Doe go',
                         'token': self.SLACK_TOKEN + ''}
         response = self.client.post(reverse('feed:slack'), message_data)
@@ -83,12 +102,20 @@ class TweetListAPITestCase(DatabaseSetup, APITestCase):
         Tweet.objects.create(text="adam#2", id_str='2', created_at='Wed')
 
     def test_get_tweet_list_unauthenticated(self):
+        """
+        Test that tests fetching instance of model.Tweet
+        without a valid JWT Token.
+        """
         response = self.client.get(reverse('feed:tweet-list'))
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
         self.assertEqual(json.loads(response.content)['detail'],
                          "Authentication credentials were not provided.")
 
     def test_get_tweet_list_authenticated(self):
+        """
+        Test that tests fetching instance of model.Tweet
+        with a valid JWT Token.
+        """
         self.client.credentials(HTTP_AUTHORIZATION='JWT ' + self.token)
         response = self.client.get(reverse('feed:tweet-list'))
         self.assertTrue(len(
@@ -96,4 +123,7 @@ class TweetListAPITestCase(DatabaseSetup, APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_model_Tweet_str_function(self):
+        """
+        Test that tests __str__ method of models.Tweet
+        """
         self.assertEqual(self.tweet.text, str(self.tweet))

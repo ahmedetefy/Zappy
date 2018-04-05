@@ -5,6 +5,9 @@ from django.contrib.auth.models import AbstractUser
 
 
 class ZappyUser(AbstractUser):
+    """
+    ZappyUser Model for storing User related details
+    """
     jwt_secret = models.UUIDField(default=uuid.uuid4)
 
     def __str__(self):

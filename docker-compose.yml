@@ -18,7 +18,7 @@ services:
 
     localtunnel:
         image: efrecon/localtunnel
-        restart: always
+        # restart: always
         links:
             - web
         command:
