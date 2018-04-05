@@ -3,14 +3,13 @@ from rest_framework import generics
 from rest_framework import status as status_http
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
-
 from zappy_corp import settings
+
+import tweepy
 
 from .models import Tweet
 from .serializers import TweetSerializer
 from .permissions import SlackTokenPermission, GoMessagePermission
-
-import tweepy
 
 
 class TweetList(generics.ListAPIView):
@@ -54,11 +53,13 @@ class GetTweetsView(APIView):
                      'id_str': status._json['id_str'],
                      'created_at': status._json['created_at']}
             latest_tweets.append(tweet)
-        Tweet.objects.mongo_insert_many(latest_tweets)
-        data = {
-            'message': 'Your twitter posts have been registered correctly.'
-        }
-        return Response(data, status=status_http.HTTP_201_CREATED)
+        if latest_tweets:
+            Tweet.objects.mongo_insert_many(latest_tweets)
+            data = {
+                'message': 'Your twitter posts have been registered correctly.'
+            }
+            return Response(data, status=status_http.HTTP_201_CREATED)
+        return Response(status=status_http.HTTP_204_NO_CONTENT)
 
 
 def twitter_setup():

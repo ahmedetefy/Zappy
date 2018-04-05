@@ -1,11 +1,12 @@
 import json
 
 from django.urls import reverse
-from zappy_corp import settings
 from rest_framework import status
 from rest_framework.test import APITestCase, APIClient
+from zappy_corp import settings
 
 from pymongo import MongoClient
+
 from users.models import ZappyUser
 from .models import Tweet
 from .views import twitter_setup
@@ -75,6 +76,9 @@ class GetTweetsViewAPITestCase(DatabaseSetup, APITestCase):
         tweets_count = api.get_user('@AhmedEtefy').statuses_count
         db_tweets_count = Tweet.objects.all().count()
         self.assertEqual(tweets_count, db_tweets_count)
+        # Test Retrieval of all Tweets after they have been added.
+        response = self.client.post(reverse('feed:slack'), message_data)
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         # Test the retrieval of only new Tweets to avoid duplication
         Tweet.objects.order_by("-id_str")[0].delete()
         count_before_tweets = Tweet.objects.all().count()

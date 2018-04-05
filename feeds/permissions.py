@@ -1,5 +1,4 @@
 from rest_framework import permissions
-
 from zappy_corp import settings
 
 from .exceptions import SlackTokenException, GoMessageException
