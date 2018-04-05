@@ -26,17 +26,26 @@ Password: superadminpass@123
 ## Get Started  
 
 First of all, make sure you have [Docker-compose](https://docs.docker.com/compose/install/#install-compose) installed and set to go.  
+Second, This project uses NodeJS and Angular CLI.
+
+* Install [NodeJS](https://nodejs.org/en/download/)
+* Install AngularCLI using npm  
 
 Next, please follow the following instructions:  
 ```
-(1) $ sudo docker-compose build  
-(2) $ sudo docker-compose run web python3 manage.py makemigrations users feeds  
-(3) $ sudo docker-compose run web python3 manage.py migrate
-(4) Optional to run tests  
+(1) clone the repository and cd into it
+(2) $ sudo docker-compose build  
+(3) $ sudo docker-compose run web python3 manage.py makemigrations users feeds  
+(4) $ sudo docker-compose run web python3 manage.py migrate
+(5) Optional to run tests  
 $ sudo docker-compose run web python3 manage.py test  
-(5) Create your admin user to be used in logging in the application  
+(6) Create your admin user to be used in logging in the application  
 $ sudo docker-compose run web python3 manage.py createsuperuser  
-(6) $ sudo docker-compose up  
+(6) $ cd frontend/
+(7) $ npm install
+(8) $ ng build
+(9) $ cd ..
+(10) $ sudo docker-compose up
 
 ```
 
