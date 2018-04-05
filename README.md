@@ -28,3 +28,14 @@ Password: superadminpass@123
 First of all, make sure you have [Docker-compose](https://docs.docker.com/compose/install/#install-compose) installed and set to go.  
 
 Next, please follow the following instructions:  
+```
+(1) $ sudo docker-compose build  
+(2) $ sudo docker-compose run web python3 manage.py makemigrations
+(3) $ sudo docker-compose run web python3 manage.py migrate
+(4) Optional to run tests  
+$ sudo docker-compose run web python3 manage.py test  
+(5) Create your admin user to be used in logging in the application  
+$ sudo docker-compose run web python3 manage.py createsuperuser  
+(6) $ sudo docker-compose up  
+
+```
