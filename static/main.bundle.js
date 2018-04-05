@@ -20,14 +20,14 @@ webpackEmptyAsyncContext.id = "./src/$$_lazy_route_resource lazy recursive";
 /***/ "./src/app/app.component.css":
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = ".gradientNav {\n    background: -webkit-gradient(linear, left top, right top, from(#3bade9), to(#317765));\n    background: linear-gradient(to right, #3bade9, #317765);\n}\n.whiteText {\n\tcolor:white;\n}"
 
 /***/ }),
 
 /***/ "./src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-default \">\n  <div class=\"container\">\n    <div class=\"navbar-header\">\n      <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#navbar\" aria-expanded=\"false\" aria-controls=\"navbar\">\n        <span class=\"sr-only\">Toggle navigation</span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n      </button>\n      <a class=\"navbar-brand\" routerLink=\"\">Zappy Corp</a>\n    </div>\n  </div>\n</nav>\n\n\n\n<div class=\"container\" style=\"min-height: 800px;\">\n  <router-outlet></router-outlet>\n</div>"
+module.exports = "<nav class=\"navbar navbar-default gradientNav\">\n  <div class=\"container\">\n    <div class=\"navbar-header\">\n      <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#navbar\" aria-expanded=\"false\" aria-controls=\"navbar\">\n        <span class=\"sr-only\">Toggle navigation</span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n      </button>\n      <a class=\"navbar-brand whiteText\" routerLink=\"\">Zappy Corp</a>\n    </div>\n  </div>\n</nav>\n\n\n\n<div class=\"container\" style=\"min-height: 800px;\">\n  <router-outlet></router-outlet>\n</div>"
 
 /***/ }),
 
@@ -205,14 +205,14 @@ var AppRoutingModule = /** @class */ (function () {
 /***/ "./src/app/components/login/login.component.css":
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = ".img-size {\n\twidth: 25%\n}"
 
 /***/ }),
 
 /***/ "./src/app/components/login/login.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container text-center theme-orange\">\n\t<h1><b> Welcome to Zappy Corp! </b></h1>\n\t<h3> Please login to view the submitted tweets.</h3>\n</div>\n\n<div class=\"container\">\n\t<div class=\"row main\">\n\t\t<div class=\"main-login main-center\">\n\t\t\t<form #loginForm='ngForm' (ngSubmit)='login()'>\n\t\t\t\t\n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t<label for=\"username\" class=\"cols-sm-2 control-label\">Username</label>\n\t\t\t\t\t<div class=\"cols-sm-10\">\n\t\t\t\t\t\t<div class=\"input-group\">\n\t\t\t\t\t\t\t<span class=\"input-group-addon\"><i class=\"fa fa-envelope fa\" aria-hidden=\"true\"></i></span>\n\t\t\t\t\t\t\t<input #usernameValid=\"ngModel\" required [(ngModel)]='user.username' type=\"text\" class=\"form-control\" name=\"username\" id=\"username\"/>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div *ngIf=\"usernameValid.errors && (usernameValid.dirty || usernameValid.touched)\" class=\"text-center\">\n\t\t\t\t\t\t\t<p class=\"field-error\" [hidden]=\"!usernameValid.errors.required\">\n\t\t\t\t\t\t\t  Username is required!\n\t\t\t\t\t\t\t</p>\t\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t<label for=\"password\" class=\"cols-sm-2 control-label\">Password</label>\n\t\t\t\t\t<div class=\"cols-sm-10\">\n\t\t\t\t\t\t<div class=\"input-group\">\n\t\t\t\t\t\t\t<span class=\"input-group-addon\"><i class=\"fa fa-lock fa-lg\" aria-hidden=\"true\"></i></span>\n\t\t\t\t\t\t\t<input #passwordValid=\"ngModel\" required [(ngModel)]='user.password' type=\"password\" class=\"form-control\" name=\"password\" id=\"password\" />\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div *ngIf=\"passwordValid.errors && (passwordValid.dirty || passwordValid.touched)\" class=\"text-center\">\n\t\t\t\t\t\t\t<p class=\"field-error\" [hidden]=\"!passwordValid.errors.required\">\n\t\t\t\t\t\t\t  Password is required!\n\t\t\t\t\t\t\t</p>\t\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\n\n\t\t\t\t\n\n\t\t\t\t<div class=\"form-group \">\n\t\t\t\t\t<button [disabled]=\"!loginForm.valid\" type=\"submit\" id=\"button\" class=\"btn btn-primary btn-lg btn-block login-button\">Submit</button>\n\t\t\t\t</div>\n\t\t\t\t\n\t\t\t</form>\n\t\t</div>\n\t</div>\n</div>"
+module.exports = "<div class=\"container text-center theme-orange\">\n\t<h1><b> Welcome to Zappy Corp! </b></h1>\n</div>\n<br>\n<div class=\"container text-center\">\n\t<img class=\" img-size\" src=\"assets/images/twitter.jpg\"/>\n</div>\n\n<br>\n<div class=\"container text-center\">\n\t<h3> Please login to view Twitter tweets.</h3>\n</div>\n<div class=\"container\">\n\t<div class=\"col-md-4 col-md-offset-4\">\n\t<div class=\"row main\">\n\t\t<div class=\"main-login main-center\">\n\t\t\t<form #loginForm='ngForm' (ngSubmit)='login()'>\n\t\t\t\t\n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t<label for=\"username\" class=\"cols-sm-2 control-label\">Username</label>\n\t\t\t\t\t<div class=\"cols-sm-10\">\n\t\t\t\t\t\t<div class=\"input-group\">\n\t\t\t\t\t\t\t<span class=\"input-group-addon\"><i class=\"fa fa-envelope fa\" aria-hidden=\"true\"></i></span>\n\t\t\t\t\t\t\t<input #usernameValid=\"ngModel\" required [(ngModel)]='user.username' type=\"text\" class=\"form-control\" name=\"username\" id=\"username\"/>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div *ngIf=\"usernameValid.errors && (usernameValid.dirty || usernameValid.touched)\" class=\"text-center\">\n\t\t\t\t\t\t\t<p class=\"field-error\" [hidden]=\"!usernameValid.errors.required\">\n\t\t\t\t\t\t\t  Username is required!\n\t\t\t\t\t\t\t</p>\t\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t<label for=\"password\" class=\"cols-sm-2 control-label\">Password</label>\n\t\t\t\t\t<div class=\"cols-sm-10\">\n\t\t\t\t\t\t<div class=\"input-group\">\n\t\t\t\t\t\t\t<span class=\"input-group-addon\"><i class=\"fa fa-lock fa-lg\" aria-hidden=\"true\"></i></span>\n\t\t\t\t\t\t\t<input #passwordValid=\"ngModel\" required [(ngModel)]='user.password' type=\"password\" class=\"form-control\" name=\"password\" id=\"password\" />\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div *ngIf=\"passwordValid.errors && (passwordValid.dirty || passwordValid.touched)\" class=\"text-center\">\n\t\t\t\t\t\t\t<p class=\"field-error\" [hidden]=\"!passwordValid.errors.required\">\n\t\t\t\t\t\t\t  Password is required!\n\t\t\t\t\t\t\t</p>\t\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\n\n\t\t\t\t\n\n\t\t\t\t<div class=\"form-group \">\n\t\t\t\t\t<button [disabled]=\"!loginForm.valid\" type=\"submit\" id=\"button\" class=\"btn btn-primary btn-lg btn-block login-button\">Submit</button>\n\t\t\t\t</div>\n\t\t\t\t\n\t\t\t</form>\n\t\t</div>\n\t</div>\n</div>\n</div>"
 
 /***/ }),
 
@@ -275,14 +275,14 @@ var LoginComponent = /** @class */ (function () {
 /***/ "./src/app/components/logout/logout.component.css":
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = ".img-size {\n\twidth: 25%\n}"
 
 /***/ }),
 
 /***/ "./src/app/components/logout/logout.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n\t<h3 class=\"theme-blue text-center section\"><b> Are you sure you want to logout? </b></h3>\n\t<div class=\"col-md-12 text-center theme-orange\">\n\t\t<button routerLink=\"/tweet_list\" class=\"btn logout-button\" > No </button>\n\t\t<button (click)='logMeOut()' class=\"btn logout-button\" > Yes </button>\n\t</div>\n</div>"
+module.exports = "<br>\n<div class=\"container text-center\">\n\t<img class=\" img-size\" src=\"assets/images/twitter.jpg\"/>\n</div>\n<div class=\"container\">\n\t<h3 class=\"theme-blue text-center section\"><b> Are you sure you want to logout? </b></h3>\n\t<div class=\"col-md-12 text-center theme-orange\">\n\t\t<button routerLink=\"/tweet_list\" class=\"btn logout-button\" > No </button>\n\t\t<button (click)='logMeOut()' class=\"btn logout-button\" > Yes </button>\n\t</div>\n</div>"
 
 /***/ }),
 
@@ -345,14 +345,14 @@ var LogoutComponent = /** @class */ (function () {
 /***/ "./src/app/components/not-found/not-found.component.css":
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = ".img-size {\n\twidth: 25%\n}"
 
 /***/ }),
 
 /***/ "./src/app/components/not-found/not-found.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class='text-center'>\n    <h1>404 - Page Not Found</h1>\n</div>"
+module.exports = "<br>\n<div class=\"container text-center\">\n\t<img class=\" img-size\" src=\"assets/images/twitter.jpg\"/>\n</div>\n<!-- <br> -->\n<div class='text-center'>\n    <h1>404 - Page Not Found</h1>\n</div>"
 
 /***/ }),
 
@@ -395,14 +395,14 @@ var NotFoundComponent = /** @class */ (function () {
 /***/ "./src/app/components/tweet-list/tweet-list.component.css":
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = "#login { display: none; }\n.login,\n.logout { \n    position: absolute; \n    top: -3px;\n    right: 0;\n}\n.page-header { position: relative; }\n.reviews {\n    color: #555;    \n    font-weight: bold;\n    margin: 10px auto 20px;\n}\n.media .media-object { max-width: 120px; }\n.media-body { position: relative; }\n.media-date { \n    position: absolute; \n    right: 25px;\n    top: 25px;\n}\n.media-date li { padding: 0; }\n.media-date li:first-child:before { content: ''; }\n.media-date li:before { \n    content: '.'; \n    margin-left: -2px; \n    margin-right: 2px;\n}\n.media-comment { margin-bottom: 20px; }\n.btn-circle {\n    font-weight: bold;\n    font-size: 12px;\n    padding: 6px 15px;\n    border-radius: 20px;\n}\n.btn-circle span { padding-right: 6px; }\n.tab-content {\n    padding: 50px 15px;\n    border: 1px solid #ddd;\n    border-top: 0;\n    border-bottom-right-radius: 4px;\n    border-bottom-left-radius: 4px;\n}\nh4 {\n    margin:0 !important;\n}\n.gradientNav {\n    background: -webkit-gradient(linear, left top, right top, from(#3bade9), to(#317765));\n    background: linear-gradient(to right, #3bade9, #317765);\n}"
 
 /***/ }),
 
 /***/ "./src/app/components/tweet-list/tweet-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h1>Tweet List </h1>\n<ul *ngFor=\"let item of tweetList\">\n\t<li>\n\t\t<p> {{item.text}} </p>\n\t\t<p> {{item.created_at}} </p>\n\t</li>\n</ul>\n<button routerLink=\"/logout\" class=\"btn logout-button\" > Logout </button>\n"
+module.exports = "<div class=\"container\">\n  <div class=\"row\">\n    <div class=\"col-sm-10 col-sm-offset-1\" id=\"logout\">\n        <div class=\"page-header\">\n            <div class=\"logout\">\n                <button class=\"btn btn-default btn-circle text-uppercase\" type=\"button\" routerLink=\"/logout\">\n                    <span class=\"glyphicon glyphicon-off\"></span> Logout                    \n                </button>                \n            </div>\n        </div>\n        <div class=\"comment-tabs\">\n            <ul class=\"nav nav-tabs\" role=\"tablist\">\n                <li class=\"active\"><a role=\"tab\" data-toggle=\"tab\"><h3 class=\"reviews text-capitalize\">Tweets</h3></a></li>\n            </ul>            \n            <div class=\"tab-content gradientNav\">\n                <div class=\"tab-pane active\" >                \n                    <ul class=\"media-list\">\n                      <li class=\"media\">\n                        <div class=\"media-body\">\n                          <h3 class=\"text-center\" *ngIf=\"tweetList?.length < 1\">\n                            No tweets fetched yet!\n                          </h3>\n                          <div *ngFor=\"let item of tweetList\" class=\"well well-lg\">\n                              <h4 class=\"media-heading text-uppercase reviews\">#{{item.id_str}} </h4>\n                              <p class=\" reviews text-right\">{{item.created_at}}</p>\n                              <p class=\"media-comment reviews\">\n                                {{item.text}}\n                              </p>\n                          </div>              \n                        </div>\n                        \n                      </li>          \n                      \n                      \n                    </ul> \n                </div>\n                \n                \n            </div>\n        </div>\n\t</div>\n</div>\n "
 
 /***/ }),
 

@@ -1,8 +1,43 @@
-<h1>Tweet List </h1>
-<ul *ngFor="let item of tweetList">
-	<li>
-		<p> {{item.text}} </p>
-		<p> {{item.created_at}} </p>
-	</li>
-</ul>
-<button routerLink="/logout" class="btn logout-button" > Logout </button>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-10 col-sm-offset-1" id="logout">
+        <div class="page-header">
+            <div class="logout">
+                <button class="btn btn-default btn-circle text-uppercase" type="button" routerLink="/logout">
+                    <span class="glyphicon glyphicon-off"></span> Logout                    
+                </button>                
+            </div>
+        </div>
+        <div class="comment-tabs">
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="active"><a role="tab" data-toggle="tab"><h3 class="reviews text-capitalize">Tweets</h3></a></li>
+            </ul>            
+            <div class="tab-content gradientNav">
+                <div class="tab-pane active" >                
+                    <ul class="media-list">
+                      <li class="media">
+                        <div class="media-body">
+                          <h3 class="text-center" *ngIf="tweetList?.length < 1">
+                            No tweets fetched yet!
+                          </h3>
+                          <div *ngFor="let item of tweetList" class="well well-lg">
+                              <h4 class="media-heading text-uppercase reviews">#{{item.id_str}} </h4>
+                              <p class=" reviews text-right">{{item.created_at}}</p>
+                              <p class="media-comment reviews">
+                                {{item.text}}
+                              </p>
+                          </div>              
+                        </div>
+                        
+                      </li>          
+                      
+                      
+                    </ul> 
+                </div>
+                
+                
+            </div>
+        </div>
+	</div>
+</div>
+ 
