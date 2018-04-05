@@ -39,3 +39,5 @@ $ sudo docker-compose run web python3 manage.py createsuperuser
 (6) $ sudo docker-compose up  
 
 ```
+
+Finally visit https://zappycorp.localtunnel.me/ or http://0.0.0.0:8000/, and enter your username and password from step 5 to authenticate.
